@@ -1,0 +1,27 @@
+{% extends "baselisa.html" %}
+
+{% load staticfiles %}
+
+{% block menustyle %}{% endblock %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main/style.css' %}" />
+{% endblock %}
+{% block lisamenu_icon %}{% endblock %}
+{% block lisamenu %}{% endblock %}
+
+{% block content %}
+  <div class="content">
+  <div class="form-wrapper">
+    <div class="linker"> 
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+    </div>
+    <form class="login-form" action="https://accounts.google.com/o/oauth2/auth?client_id=260548493040-344cbgp45fdc7at6sb6gb86uodllp8ph.apps.googleusercontent.com&response_type=code&redirect_uri=http://127.0.0.1:8000/lisamain&scope=https://www.googleapis.com/auth/userinfo.email" method="post">
+      <button type="submit">ВОЙТИ</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+﻿{% extends "ambulat/base.html" %}
+
+{% load staticfiles %}
+
+{% block style %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main/style.css' %}" />
+{% endblock %}
+{% block lisamenu_icon %}{% endblock %}
+{% block commonmenu %}{% endblock %}
+
+{% block content %}
+<div class="content">
+  <div class="form-wrapper">
+    <div class="linker"> 
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+    </div>
+    <form class="login-form" action="{{ app_path }}" method="post">
+	  {% csrf_token %}  
+      <input type="text" name="username" 
+		value="{% if form.username.value %}{{ form.username.value }}{% endif %}" 
+		id="username" placeholder="Логін" />
+      <input type="password" name="password" value="" id="password" placeholder="Пароль" />
+	  <p style="margin:4px;"><b><a href="/ambulat/register/" style="color:black;">Реєстрація</a></b></p>
+      <button type="submit" value="login" style="margin-top:4px;">УВІЙТИ</button>
+      <input type="hidden" name="next" value="http://{{ site }}/ambulat/" />
+    </form>
+	<br />
+  {% if messages %}
+    {% for message in messages %}
+        <p class="{% if message.tags %}{{ message.tags }}{% endif %}" >
+            {{ message }}
+        </p>
+    {% endfor %}
+  {% else %}
+    {% if form.errors %}
+      <p class="login-error">Жалкуємо, Ви невірно ввели логін або пароль</p>
+    {% endif %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}

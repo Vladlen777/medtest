@@ -1,0 +1,17 @@
+﻿<html>
+<head>
+    <title>Policy List</title>
+</head>
+<body>
+    <h4>Просмотр списка полисов:</h4>
+    <form action="https://accounts.google.com/o/oauth2/token" method="post">
+        <input type="hidden" name="code" value="{{ code }}">
+        <input type="hidden" name="client_id" value="260548493040-344cbgp45fdc7at6sb6gb86uodllp8ph.apps.googleusercontent.com">
+        <input type="hidden" name="client_secret" value="VaCxz1QtkWbCCv9jF17kLPnd">
+        <input type="hidden" name="redirect_uri" value="http://127.0.0.1:8000/search/policylist">
+        <input type="hidden" name="grant_type" value="authorization_code">
+        <input type="hidden" name="Content-type" value="application/x-www-form-urlencoded">
+        <input type="submit" value="Показать">
+    </form>
+</body>
+</html>

@@ -1,0 +1,75 @@
+﻿{% extends "ambulat/basemenu.html" %}
+
+{% load staticfiles %}
+
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main/insui.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main/main.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/ambulat/icon.css' %}" />
+	<script type="text/javascript" src="{% static 'js/main/jquery.insui.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/ambulat/datagrid-filter_min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/ambulat/personnel.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+  <h5>Персонал, {{ user.last_name }} {{ user_initials }}
+  {% if user_error %}
+    <span class="itemerr">{{ user_error }}</span>
+  {% endif %}
+  </h5>
+  <div id="pamain" class="insui-resizable" style="margin:20px auto; width:520px; border:1px solid #ccc;">
+	<div id="tpersonnel" class="insui-tabs"> 
+        <div title="Персонал" style="padding:10px;">
+			<div id="plresize" class="insui-resizable" style="height:300px;border:1px solid #ccc;">
+				<div id="papers" class="insui-panel" style="width:100%;height:100%;">
+					<table id="gpersonnel" class="insui-datagrid" style="height:100%;"></table>
+				</div>
+			</div>
+			<form id="fdel" method="post">{% csrf_token %}
+			</form>
+    	</div>
+		<div id="trecord" title="Запис" hidden="true" style="padding:10px;">
+		  <form id="fsave" method="post">{% csrf_token %}
+			<table cellpadding="2">
+				<tr>
+					<td>Прізвище</td>
+					<td>И'мя</td>
+					<td>По батькові</td>
+				</tr>
+				<tr>
+					<td><input class="insui-textbox" style="width:150px;" name="lastname" t_amb="lastname"></td>					
+					<td><input class="insui-textbox" style="width:150px;" name="firstname" t_amb="firstname"></td>
+					<td><input class="insui-textbox" style="width:150px;" name="middlename" t_amb="middlename"></td>
+				</tr>
+			</table>
+			<table cellpadding="2">
+				<tr>
+					<td>Спеціальність</td>
+					<td>Кабінет</td>
+					<td>Телефон</td>
+				</tr>				
+				<tr>
+					<td>
+						<select id="spec" class="insui-combobox" name="speciality_id" style="width:240px;">
+						{% for spec in specialities %}
+							<option value="{{ spec.id }}">{{ spec.name }}</option>
+						{% endfor %}
+						</select>
+					</td>
+					<td><input class="insui-validatebox" style="width:60px;" name="cabinetno" t_amb="cabinetno"></td>
+					<td id="phone"><input class="insui-textbox" style="width:150px;" name="phone" t_amb="phone"></td>
+				</tr>
+			</table>
+			<div id="pabutton" class="insui-panel" style="height:40px;width:460px;margin-top:4px;margin-bottom:4px;padding:4px;">
+				<a id="btnsave" href="javascript:void(0)" class="insui-linkbutton" style="margin-left:0px;">Зберегти</a>			
+				<a id="btncancel" href="javascript:void(0)" class="insui-linkbutton" style="margin-left:0px;">Відмінити</a>
+			</div>
+		  </form>
+		  <span>Розклад</span>
+		  <table id="gcurriculum" class="insui-datagrid" style="height:214px;width:460px;"></table>		  
+        </div>
+    </div>
+  </div>
+  </div>
+{% endblock %}

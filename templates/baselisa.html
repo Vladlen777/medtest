@@ -1,0 +1,68 @@
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+	<title>Тестовый кабинет агента</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+   {% block menustyle %}
+	<link rel="stylesheet" href="{% static 'css/menu/css/style.css' %}" />
+	<script src="{% static 'js/menu/script.min.js' %}"></script>
+ 	<script src="{% static 'js/menu/vladmaxi-top.js' %}"></script>
+	{% endblock %}
+	{% block style %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base/style.css' %}" />
+</head>
+<body>
+<!-- top bar -->
+    <div class="vladmaxi-top">
+	{% block lisamenu_icon %}
+		<a id= "menu_btn" href="#menu" class="menu-trigger ss-icon">&#9776;</a>
+	{% endblock %}
+        <a href="http://csltd.com.ua" target="_blank">Главная CS</a>
+        <span class="right">
+        <a href="http://delo.ua/finance/insurance/">
+                <strong>Новости страховых компаний</strong>
+            </a>
+        </span>
+    <div class="clr"></div>
+    </div>
+<!--/ top bar -->
+	{% block lisamenu %}
+	</br>
+	<header class="main" style="display: none">
+    	<h1 class="logo"><a href="." class="ss-list">Меню</a></h1>
+		<a href="#menu" class="menu-trigger ss-icon" style="top:30px">&#xED50;</a>
+		<nav>
+			<ul>
+               {% for key, value in lisamenu.items %}
+					<li><a href="{{ value.url }}">{{ value.name }}</a></li>
+               {% endfor %}
+				<!--<li><a href="{{ policylist.url }}">{{ policylist.name }}</a></li> #3f94bf style="color:rgb(228,182,88)"-->
+			</ul>
+		</nav>
+	</header>
+	{% endblock %}
+<!--
+</br>
+{% for menu_item in menu.top.items %}
+    {% ifequal request.get_full_path menu_item.url %}
+        <span class="active">{{ menu_item.name }}</span>
+    {% else %}
+
+    <a href="{{ menu_item.url }}"
+
+    {% if menu_item.title %}
+        title="{{ menu_item.title }}"
+    {% endif %}
+
+    {% if menu_item.target %}
+        target="{{ menu_item.target }}"
+    {% endif %}>{{ menu_item.name }}</a>
+    {% endifequal %}
+{% endfor %}
+-->
+    {% block content %}{% endblock %}
+    {% block footer %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿{% extends "policlinic/base.html" %}
+
+{% load staticfiles %}
+
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main/insui.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main/style.css' %}" />
+	<script type="text/javascript" src="{% static 'js/main/jquery.insui.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/policlinic/login.js' %}"></script>
+{% endblock %}
+{% block lisamenu_icon %}{% endblock %}
+{% block commonmenu %}{% endblock %}
+
+{% block content %}
+<div class="content">
+  <div class="form-wrapper">
+    <div class="linker"> 
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+    </div>
+    <form class="login-form" action="/policlinic/patient/" method="post">
+	  {% csrf_token %}
+		<span>Запись на прием к врачу</span>
+        <div style="margin:6px 16px 6px 16px;text-align:left;">
+            <label for="lastname" class="label-top">Фамилия:</label>
+            <input id="lastname" class="insui-textbox tb" style="height:27px;" name="lastname">
+        </div>
+        <div style="margin:6px 16px 6px 16px;text-align:left;">
+            <label for="firstname" class="label-top">Имя:</label>
+            <input id="firstname" class="insui-textbox tb" style="height:27px;" name="firstname">
+        </div>
+        <div style="margin:6px 16px 6px 16px;text-align:left;">
+            <label for="middlename" class="label-top">Отчество:</label>
+            <input id="middlename" class="insui-textbox tb" style="height:27px;" name="middlename">
+        </div>
+        <div style="margin:6px 16px 6px 16px;text-align:left;">
+            <label for="birthday" class="label-top">День рожденья:</label>
+            <input id="birthday" class="insui-datebox tb" style="height:27px;" name="birthday">
+        </div>
+		<button type="submit" value="login">ВОЙТИ</button>
+    </form>
+    <style scoped="scoped">
+		.label-top{margin-bottom:2px;}
+        .tb{
+            width:230px;
+            margin:0;
+            padding:5px 4px;
+            border:1px solid #ccc;
+            box-sizing:border-box;
+        }
+		.form-wrapper {
+		  height:100%;
+		}
+		.form-wrapper .login-form {
+		  padding-top:24px;
+		}
+		.form-wrapper button[type="submit"] {
+			margin:12px 12px;
+		}
+    </style>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% load staticfiles %}
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Тестовый кабинет агента</title>
+	<link rel="icon" href="http://csltd.com.ua/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://csltd.com.ua/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}" />
+</head>
+
+<body>
+
+<!-- top bar -->
+    <div class="vladmaxi-top">
+        <a href="http://csltd.com.ua" target="_blank">Главная CS</a>
+        <span class="right">
+        <a href="http://delo.ua/finance/insurance/">
+                <strong>Новости страховых компаний</strong>
+            </a>
+        </span>
+    <div class="clr"></div>
+    </div>
+<!--/ top bar -->
+
+  <div class="content">
+  <div class="form-wrapper">
+    <div class="linker"> 
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+    </div>
+    <form class="login-form" action="https://accounts.google.com/o/oauth2/auth?client_id=260548493040-344cbgp45fdc7at6sb6gb86uodllp8ph.apps.googleusercontent.com&response_type=code&redirect_uri=http://127.0.0.1:8000/search/policylist&scope=https://www.googleapis.com/auth/userinfo.email" method="post">
+      <button type="submit">ВОЙТИ</button>
+    </form>
+  </div>
+</div>
+
+  <script src="http:"></script>
+
+</body>
+
+</html>

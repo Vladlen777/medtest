@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <title>Реєстратура - Журнал прийому пациєнтів</title>
+  <style type="text/css">
+  @page { 
+	size: A4; 
+	margin: 1cm;
+	counter-increment: page;
+	counter-reset: page 1; 
+	@top-right { 
+		content: "Page " counter(page) " of " counter(pages); 
+	}
+  }
+  @font-face {
+    font-family: arial;
+    src: url("/home/tiger/djcode/mysite/mysite/static/font/arial.ttf");
+  }
+  html {
+    font-family: arial, cursive;
+  }
+  table { 
+    background:	LightCyan; border: 1px #ff0000 solid;
+    border-collapse: collapse;
+	page-break-inside: avoid;
+  }
+  th {
+    background: PaleGreen;
+    border: 1px #0000ff solid;
+    padding: 0.2em;
+  }
+  td { 
+    border: 1px solid;
+    padding: 0.2em;
+    text-align: left; 
+  }
+  </style>
+</head>
+<body>
+<p>{{ currentdate }}</p>
+<h3 style="text-align: center;">Журнал прийому пациєнтів</h3>
+<table style="text-align: left; width: 100%;" border="1"
+ cellpadding="1" cellspacing="1">
+  <tbody>
+    <tr style="text-align: center;">
+      <th style="width: 160px;"><small>ПІБ лікаря</small></th>
+      <th style="width: 60px;"><small>Дата прийому</small></th>
+      <th style="width: 30px;"><small>Кабінет</small></th>
+      <th style="width: 60px;"><small>Час<br />прийому з</small></th>
+      <th style="width: 60px;"><small>Час<br />прийому по</small></th>
+      <th style="width: 160px;"><small>ПІБ пацієнта</small></th>
+      <th style="width: 60px;"><small>№ амбул.<br />карти</small></th>
+    </tr>
+{% for a in ambulats %}
+    <tr>
+      <td style="width: 160px;"><small>{{a.doctorfullname}}</small></td>
+      <td style="width: 60px; text-align: center;"><small>{{a.receptiondate}}</small></td>
+      <td style="width: 30px;"><small>{{a.cabinetno}}</small></td>
+      <td style="width: 60px;"><small>{{a.recepttimestart}}</small></td>
+      <td style="width: 60px;"><small>{{a.recepttimeend}}</small></td>
+      <td style="width: 160px;"><small>{{a.patientfullname}}</small></td>
+      <td style="width: 60px;"><small>{{a.cardno}}</small></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</body>
+</html>

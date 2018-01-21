@@ -1,0 +1,24 @@
+﻿{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'policies/style.css' %}" />
+{% if policies %}
+    <p>Найдено {{ policies|length }} договоров.</p>
+    <table>
+      <tr>
+        <th>Номер полиса</th>
+        <th>Валюта</th>
+        <th>Код полиса</th>
+        <th>Дата</th>
+      </tr>
+      {% for policy in policies %}
+      <tr>
+        <td style="text-align: left">{{ policy.FPolicyNo }}</td>
+        <td>{{ policy.FRiskAmountCurrency }}</td>
+        <td>{{ policy.FID }}</td>
+        <td>{{ policy.FValueDate }}</td>
+      </tr>  
+      {% endfor %}
+    </table>
+{% else %}
+    <p>Список полисов пуст.</p>
+{% endif %}

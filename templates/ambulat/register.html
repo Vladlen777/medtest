@@ -1,0 +1,33 @@
+﻿{% extends "ambulat/base.html" %}
+
+{% load staticfiles %}
+
+{% block style %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ambulat/register_style.css' %}" />
+{% endblock %}
+{% block lisamenu_icon %}{% endblock %}
+{% block commonmenu %}{% endblock %}
+
+{% block content %}
+<div class="content">
+  <div class="form-wrapper">
+    <div class="linker"> 
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+    </div>
+    <form class="login-form" action="" method="post">
+	  {% csrf_token %}
+      {{ form.as_table }}
+      <p style="margin:0px;"><b><a href="/ambulat/login/" style="color:black;">Назад</a></b></p>
+      <button type="submit">Зареєструватися</button>
+    </form>
+  </div>
+</div>
+<script>
+	$("#id_username").attr("placeholder", "Логін");
+</script>
+{% endblock %}

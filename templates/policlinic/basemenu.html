@@ -1,0 +1,10 @@
+{% extends "policlinic/base.html" %}
+{% load staticfiles %}
+
+{% block fullmenu %}
+	<ul class="sb-menu">
+        {% for key, value in patientmenu.items %}
+			<li class="sb-close"><a href="{{ value.url }}">{{ value.name }}</a></li>
+        {% endfor %}
+	</ul>
+{% endblock %}

@@ -1,0 +1,67 @@
+﻿{% extends "baselisa.html" %}
+
+{% load staticfiles %}
+
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/calc/easyui.css' %}" />
+	<!-- <script type="text/javascript" src="{% static 'js/calc/jquery.min.js' %}"></script>-->
+	<script type="text/javascript" src="{% static 'js/calc/jquery.easyui.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/calc/calc.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+  <div id="test1"></div>
+  <h5>Миникалькулятор</h5>
+	<div style="margin:20px 0;"></div>
+	<div id="tt" class="easyui-tabs" data-options="tools:'#tab-tools'" style="width:520px;height:380px">
+<!--	<div class="easyui-panel" title="Параметры" style="width:500px"> -->
+	<div title="Параметры" data-options="closable:true" style="padding:10px">
+		<div style="padding:20px 30px 20px 30px">
+	    <form id="ff" method="post">{% csrf_token %}
+	    	<table cellpadding="2" style="font-size: 12px;">
+	    		<tr>
+	    			<td>Программа страхования:</td>
+	    			<td>
+						<select id="scheme" class="easyui-combobox" name="scheme" style="width:350px;">
+						{% for scheme in schemes %}
+							<option value="{{ scheme.ID }}">{{ scheme.NAME }}</option>
+						{% endfor %}
+						</select>
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td>Правило для программы:</td>
+	    			<td>
+						<input class="easyui-combobox" id="rule" name="rule" style="width:350px;">
+						<!--data-options="valueField:'ID',textField:'NAME'"-->
+	    			</td>
+	    		</tr>
+	    	</table>
+	    </form>
+	    <div style="text-align:center;padding:5px">
+	    	<a id="btngroup" href="javascript:void(0)" class="easyui-linkbutton">Добавить группу</a>
+	    	<a id="btnclear" href="javascript:void(0)" class="easyui-linkbutton">Очистить</a>
+	    	<a id="btnsubmit" href="javascript:void(0)" class="easyui-linkbutton">Расчитать</a>
+		</div>
+		<table id="dg" name="dg" class="easyui-datagrid" style="height:120px"></table>
+	    <div id="detail" class="easyui-panel" style="padding:5px;margin-top:2px">
+				<table cellpadding="2" style="font-size: 12px">
+					<tr id="row1">
+						<td>Взнос:</td><td><input id="eta" style="width:100px"></td>
+						<td>Количество взносов:</td><td><input id="cntpays" style="width:50px"></td>
+					</tr>
+					<tr id="row2">
+						<td>Сумма:</td><td><input id="etra" style="width:100px"></td>
+						<td></td><td></td>
+					</tr>
+				</table>
+		</div>
+	    </div>
+	</div>
+    <div id="rule2" title="Правила страхования" data-options="closable:true" style="overflow:hidden">
+		<!--<iframe id="frm" scrolling="yes" frameborder="0" style="width:100%;height:100%;"></iframe> src="http://127.0.0.1:8000/lisapdf/"-->
+    </div>
+  </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+﻿<html>
+<head>
+    <title>Search policy</title>
+</head>
+<body>
+    <h4>Поиск полиса по номеру:</h4>
+    {% if errors %}
+        <ul style="color: red;">
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="" method="get">
+        <input type="text" name="q">
+        <input type="submit" value="Search">
+    </form>
+</body>
+</html>

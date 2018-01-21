@@ -1,0 +1,19 @@
+﻿<html>
+<head>
+    <title>Policy List</title>
+</head>
+<body>
+    <h4>Просмотр списка полисов:</h4>
+    {% if errors %}
+        <ul style="color: red;">
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="" method="get">
+        <input type="hidden" name="q">
+		<a href="https://accounts.google.com/o/oauth2/auth?client_id=260548493040-344cbgp45fdc7at6sb6gb86uodllp8ph.apps.googleusercontent.com&response_type=code&redirect_uri=http://127.0.0.1:8000/search/policylist&scope=https://www.googleapis.com/auth/userinfo.email" title="Войти через Google">Войти через Google</a>
+    </form>
+</body>
+</html>

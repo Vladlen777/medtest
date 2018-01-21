@@ -1,0 +1,35 @@
+﻿{% extends "baselisa.html" %}
+
+{% load staticfiles %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'policies/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+{% if policies %}
+    <br />
+    <h4>Найдено {{ policies|length }} договоров.</h4>
+    <table>
+      <tr>
+        <th>Номер полиса</th>
+        <th>Валюта</th>
+        <th>Код полиса</th>
+        <th>Дата</th>
+      </tr>
+      {% for policy in policies %}
+      <tr>
+        <td style="text-align: left">{{ policy.FPolicyNo }}</td>
+        <td>{{ policy.FRiskAmountCurrency }}</td>
+        <td>{{ policy.FID }}</td>
+        <td>{{ policy.FValueDate }}</td>
+      </tr>  
+      {% endfor %}
+    </table>
+  {% if access_token %}
+    <p>Токен: {{ access_token }}</p>
+  {% endif %}
+{% else %}
+    <p>Список полисов пуст.</p>
+{% endif %}
+{% endblock %}

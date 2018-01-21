@@ -1,0 +1,30 @@
+﻿{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'policies/style.css' %}" />
+<p>Вы искали: <strong>{{ query }}</strong></p>
+
+{% if policies %}
+    <p>Найдено {{ policies|length }} версии полиса.</p>
+    <table>
+      <tr>
+        <th>Код полиса</th>
+        <th>Действует с</th>
+        <th>Действует по</th>
+        <th>Валюта</th>
+        <th>Код программы</th>
+        <th>Статус</th>
+      </tr>
+      {% for policy in policies %}
+      <tr>
+        <td>{{ policy.id }}</td>
+        <td>{{ policy.datefrom|date:"d.m.Y" }}</td>
+        <td>{{ policy.datetill|date:"d.m.Y" }}</td>
+        <td>{{ policy.currencyscode }}</td>
+        <td>{{ policy.insuranceschemeid }}</td>
+        <td>{{ policy.insurancepolicystatesname }}</td>
+      </tr>  
+      {% endfor %}
+    </table>
+{% else %}
+    <p>Полис не найден.</p>
+{% endif %}

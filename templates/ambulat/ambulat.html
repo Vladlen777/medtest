@@ -1,0 +1,110 @@
+﻿{% extends "ambulat/basemenu.html" %}
+
+{% load staticfiles %}
+{% load filter_group %}
+
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main/insui.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main/main.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/ambulat/icon.css' %}" />
+	<script type="text/javascript" src="{% static 'js/main/jquery.insui.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/ambulat/datagrid-filter_min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/ambulat/ambulat.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+  <h5>Прийом пацієнтів, {{ user.last_name }} {{ user_initials }}
+  {% if user_error %}
+    <span class="itemerr">{{ user_error }}</span>
+  {% endif %}
+  </h5>
+  <div id="pamain" class="insui-resizable" style="margin:20px auto; width:820px; border:1px solid #ccc;">
+	<div id="tambcard" class="insui-tabs"> 
+        <div title="Реєстрація" style="padding:10px;">
+			<div id="netresize" class="insui-resizable" style="height:300px;border:1px solid #ccc;">
+				<div id="panet" class="insui-panel" style="width:100%;height:100%;">
+					<table id="gambcard" class="insui-datagrid" style="height:100%;"></table>
+				</div>
+			</div>
+    	</div>
+		<div id="sambcard" title="Амбулаторна карта" hidden="true" style="padding:10px;">
+			<table cellpadding="2">
+				<tr>
+					<td>№ амбул. карти</td>
+					<td>ПІБ пацієнта</td>
+					<td>День народження</td>
+				</tr>
+				<tr>
+					<td><input class="insui-textbox" style="width:100px;" t_amb="cardno"></td>					
+					<td><input class="insui-textbox" style="width:200px;" t_amb="patientfullname"></td>
+					<td><input class="insui-textbox" style="width:100px;" t_amb="birthday"></td>
+				</tr>
+				<tr>
+					<td colspan="2">Адреса</td>
+					<td>Місце роботи</td>
+				</tr>				
+				<tr>
+					<td colspan="2"><input class="insui-textbox" style="width:304px;" t_amb="address"></td>
+					<td><input class="insui-textbox" style="width:200px;" t_amb="workplace"></td>
+				</tr>						
+				<tr>
+					<td>Дата прийому</td>
+					<td>ПІБ лікаря</td>
+					<td>Спеціальність</td>
+				</tr>
+				<tr>
+					<td><input class="insui-textbox" style="width:100px;" t_amb="receptiondate"></td>
+					<td><input class="insui-textbox" style="width:200px;" t_amb="doctorfullname"></td>
+					<td><input class="insui-textbox" style="width:200px;" t_amb="specialityname"></td>
+				</tr>
+			</table>				
+			<table cellpadding="2">
+				<tr>
+					<td>Період лікування</td>
+					<td>Вага</td>
+					<td>Тиск</td>
+				</tr>
+				<tr>
+					<td><input class="insui-textbox" style="width:304px;" t_amb="periodcure"></td>
+					<td><input class="insui-textbox" style="width:100px;" t_amb="weight"></td>
+					<td><input class="insui-textbox" style="width:96px;" t_amb="pressure"></td>
+				</tr>
+			<!-- { if user|has_group:"Главный врач" } -->
+				<tr>
+					<td colspan="3">Призначення ліків</td>
+				</tr>
+				<tr>
+					<td colspan="3"><input class="insui-textbox" multiline="true" style="width:508px;height:60px;" t_amb="prescriptmedicine"></td>
+				</tr>
+				<tr>
+					<td colspan="3">Симптоми</td>
+				</tr>
+				<tr>
+					<td colspan="3"><input class="insui-textbox" multiline="true" style="width:508px;height:60px;" t_amb="symptoms"></td>
+				</tr>					
+				<tr>
+					<td colspan="3">Аналізи та результати</td>
+				</tr>
+				<tr>
+					<td colspan="3"><input class="insui-textbox" multiline="true" style="width:508px;height:60px;" t_amb="analysis"></td>
+				</tr>	
+				<tr>
+					<td colspan="3">Попередній діагноз</td>
+				</tr>
+				<tr>
+					<td colspan="3"><input class="insui-textbox" multiline="true" style="width:508px;height:60px;" t_amb="startdiagnosis"></td>
+				</tr>
+				<tr>
+					<td colspan="3">Остаточний діагноз</td>
+				</tr>
+				<tr>
+					<td colspan="3"><input class="insui-textbox" multiline="true" style="width:508px;height:60px;" t_amb="enddiagnosis"></td>
+				</tr>
+			<!-- { endif } -->
+			</table>			
+        </div>
+    </div>
+  </div>
+  </div>
+{% endblock %}

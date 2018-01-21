@@ -1,0 +1,29 @@
+﻿{% load staticfiles %}
+
+<link rel="icon" href="http://csltd.com.ua/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://csltd.com.ua/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}" />
+{% if policies %}
+    <p>Найдено {{ policies|length }} договоров.</p>
+    <table>
+      <tr>
+        <th>Номер полиса</th>
+        <th>Валюта</th>
+        <th>Код полиса</th>
+        <th>Дата</th>
+      </tr>
+      {% for policy in policies %}
+      <tr>
+        <td style="text-align: left">{{ policy.FPolicyNo }}</td>
+        <td>{{ policy.FRiskAmountCurrency }}</td>
+        <td>{{ policy.FID }}</td>
+        <td>{{ policy.FValueDate }}</td>
+      </tr>  
+      {% endfor %}
+    </table>
+  {% if access_token %}
+    <p>Токен: {{ access_token }}</p>
+  {% endif %}
+{% else %}
+    <p>Список полисов пуст.</p>
+{% endif %}

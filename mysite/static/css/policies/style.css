@@ -1,0 +1,20 @@
+table {
+ background: #ffdddd; 
+ border: 1px #ff0000 solid;
+ border-collapse: collapse; /* убирание задвоенности рамки */
+}
+td {
+ border: 1px #00ff00 solid;
+ padding: 0.2em;
+ text-align: center; 
+}
+th {
+ background: #ffaaaa;
+ border: 1px #0000ff solid;
+ padding: 0.2em;
+}
+/*
+body {
+    background: lightsteelblue url("../images/lisa.jpg") no-repeat center;
+}
+*/

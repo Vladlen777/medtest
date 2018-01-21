@@ -1,0 +1,13 @@
+#btnrefresh, #btnreport, #btnregistry {
+  color:#fff;
+  background: rgb(218,149,78); /*для страрых браузеров*/
+  background: linear-gradient(to bottom, rgb(228,182,88) 0%, rgb(218,149,78) 100%); /*Firefox 16+*/
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(228,182,88)), color-stop(100%,rgb(218,149,78))); /*Chrome*/
+}
+table {
+  font-size: 12px;
+}
+.itemerr{
+  color: red;/*#930;*/
+  height: 22px;
+}
