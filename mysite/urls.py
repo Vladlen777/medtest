@@ -21,6 +21,7 @@ from ambulat.views import *
 from django.contrib.auth.views import login, logout 
 # from django.contrib.auth import views as auth_views (django 1.11)
 from ambulat.admin import my_site
+from rest_framework.urlpatterns import format_suffix_patterns
 
 '''
 urlpatterns = [
@@ -60,4 +61,9 @@ urlpatterns = [
     url(r'^ambulat/patient/save/$', requires_login(save_ambcard)),
     url(r'^ambulat/doc/$', requires_login(doc_view)),
     url(r'^ambulat/rep_ambulat/$', requires_login(rep_ambulats_pdf)),
+    url(r'^ambulat/speciality/$', SpecialityList.as_view()),
+    url(r'^ambulat/speciality/(?P<pk>[0-9]+)/$', SpecialityDetail.as_view()),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)

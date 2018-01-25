@@ -18,6 +18,10 @@ from .forms import *
 from django.core import serializers
 import json
 
+from .serializers import SpecialitySerializer
+from rest_framework import generics
+
+
 lock_msg = 'Доступ до сайту тимчасово заблоковано адміністратором'
 
 
@@ -283,3 +287,13 @@ def rep_ambulats_pdf(request):
                                    show_content_in_browser=True)
     response['Content-Disposition'] = 'inline; filename="%s"' % (get_filename_pdf('ambulats'))  # attachment
     return response
+
+
+class SpecialityList(generics.ListCreateAPIView):
+    queryset = Speciality.objects.all()
+    serializer_class = SpecialitySerializer
+
+
+class SpecialityDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Speciality.objects.all()
+    serializer_class = SpecialitySerializer
