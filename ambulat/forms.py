@@ -68,18 +68,11 @@ class UserFullForm(UserCreationForm):
 
 @transaction.atomic
 def save_patient(request, birthdaydt):
-    try:
-        p = Patient.objects.get(lastname=request.POST['last_name'],
-                                firstname=request.POST['first_name'],
-                                middlename=request.POST['middlename'],
-                                birthday=birthdaydt)
-    except Patient.DoesNotExist:
-        p = Patient(lastname=request.POST['last_name'],
-                    firstname=request.POST['first_name'],
-                    middlename=request.POST['middlename'],
-                    birthday=birthdaydt)
-        p.save()
-        Patient.objects.filter(id=p.id).update(cardno=str(100000+p.id))
+    p, created = Patient.objects.get_or_create(lastname=request.POST['last_name'],
+                                               firstname=request.POST['first_name'],
+                                               middlename=request.POST['middlename'],
+                                               birthday=birthdaydt)
+    Patient.objects.filter(id=p.id).update(cardno=str(100000+p.id))
     return p.id
 
 
