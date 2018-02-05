@@ -14,9 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import include, url
-from django.contrib import admin
-from . import views
-# from calculator.views import *
+# from django.contrib import admin
 from ambulat.views import *
 from django.contrib.auth.views import login, logout 
 # from django.contrib.auth import views as auth_views (django 1.11)
@@ -36,17 +34,6 @@ urlpatterns = [
 urlpatterns = [
     # url(r'^ambulat/admin/', include(admin.site.urls)),
     url(r'^ambulat/admin/', include(my_site.urls)),
-    url(r'^hello/', views.hello),
-    url(r'^time/', views.current_datetime),
-    url(r'^lisalogin/', views.lisalogin),
-    url(r'^lisamain/', views.lisamain),
-    # url(r'^search/policylist/', views.policylist),
-    # url(r'^lisa/calculator/$', calculator),
-    # url(r'^lisa/calculator/rule/$', reload_rule),
-    # url(r'^lisa/calculator/addgroup/$', add_group_risk),
-    # url(r'^lisa/calculator/calc/', calculate),
-    # url(r'^lisa/calculator/calc2/', calculate2),
-    url(r'^lisapdf/', views.pdf_view),
     url(r'^ambulat/login/$', login, {'template_name': 'ambulat/login.html'}),  # my_login_view), (1.11)
     url(r'^ambulat/logout/$', logout, {'template_name': 'ambulat/login.html'}),
     url(r'^ambulat/register/$', RegisterFormView.as_view()),

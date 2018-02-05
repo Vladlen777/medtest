@@ -222,10 +222,6 @@ def select_doctor(request):
 
 def save_ambcard(request):
     if request.method == 'POST':
-        # subject, from_email, to_email = 'hello3', 'tigerboy777@mail.ru', 'bvladlen777@gmail.com'
-        # message = 'This is an important message.'
-        # email = EmailMessage(subject, message, from_email, [to_email])
-        # email.attach_file('c:/djcode/mysite/mysite/static/images/netagents_20160529235239.pdf')
 
         receptiondate = datetime.datetime.strptime(request.POST['receptiondate'], '%d.%m.%Y')
         timestart = datetime.datetime.strptime('01.01.2000 '+request.POST['recepttimestart'], '%d.%m.%Y %H:%M')
