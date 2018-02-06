@@ -226,10 +226,10 @@ def save_ambcard(request):
         receptiondate = datetime.datetime.strptime(request.POST['receptiondate'], '%d.%m.%Y')
         timestart = datetime.datetime.strptime('01.01.2000 '+request.POST['recepttimestart'], '%d.%m.%Y %H:%M')
         try:
-            p = Ambcard.objects.get(personnel_id=request.POST['personnel_id'],
-                                    patient_id=request.POST['patient_id'],
-                                    receptiondate=receptiondate,
-                                    recepttimestart=timestart)
+            acard = Ambcard.objects.get(personnel_id=request.POST['personnel_id'],
+                                        patient_id=request.POST['patient_id'],
+                                        receptiondate=receptiondate,
+                                        recepttimestart=timestart)
         except Ambcard.DoesNotExist:
             delta = datetime.timedelta(minutes=15)
             acard = Ambcard(personnel_id=request.POST['personnel_id'],
@@ -250,7 +250,7 @@ def save_ambcard(request):
                     send_mail(subject, message, from_email, [to_email], fail_silently=False)
                 except BadHeaderError:
                     return HttpResponse('Invalid header found for send mail')
-        return HttpResponse('ok')
+        return HttpResponse(acard.id)
 
 
 def doc_view(request):
