@@ -38,7 +38,7 @@ pytest==3.2.5
 pytest-cov==2.5.1
 pytest-django==3.1.2
 pytz==2017.2
-PyYAML==3.12
+PyYAML==5.4
 readme-renderer==17.2
 requests==2.18.4
 requests-toolbelt==0.8.0
